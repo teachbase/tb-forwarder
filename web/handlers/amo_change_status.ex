@@ -30,34 +30,6 @@ defmodule Tbforwarder.AmoChangeStatus do
     ["email", "course_session_id"]
   end
 
-  defp send_to_teachbase(fields) when is_map(fields) do
-    if Map.size(fields) == length(white_list) do
-      {:ok, json} = Poison.encode(fields)
-      HTTPoison.start
-      HTTPoison.post!(tb_url(fields["course_session_id"]), json, headers, stream_to: self)
-    end
-  end
-
-  defp send_to_teachbase(fields) do
-    :ok
-  end
-
-  defp tb_url(course_session_id) do
-    "#{tb_host}/endpoint/v1/course_sessions/#{course_session_id}/register?access_token=#{tb_access_token}"
-  end
-
-  defp headers do
-    %{"Content-Type" => "application/json"}
-  end
-
-  defp tb_access_token do
-    Application.get_env(:tbforwarder, :teachbase)[:access_token]
-  end
-
-  defp tb_host do
-    Application.get_env(:tbforwarder, :teachbase)[:host]
-  end
-
   defp success_status do
     "142"
   end

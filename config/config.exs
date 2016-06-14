@@ -17,8 +17,10 @@ config :tbforwarder, Tbforwarder.Endpoint,
 # Teachbase Endpoint API credentials
 config :tbforwarder, 
        :teachbase,
-       access_token: "example",
-       host: "http://example.com"
+       client_id: "937493fc1ae028e5c8b78d7c5608aa456cb8d4e0dccc5b085be1ee513bc469ad",
+       client_secret: "3dbfc66bbf13f4cf987818e9bb127c4a74ac927b9e8c067bbcf133b528d9ab4d",
+       token_url: "http://127.0.0.1:3001/oauth/token"
+       host: "http://127.0.0.1:3001"
 
 # Configures Elixir's Logger
 config :logger, :console,
